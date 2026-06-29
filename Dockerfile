@@ -16,6 +16,8 @@ WORKDIR /var/www/html
 
 COPY . .
 
+RUN composer install --no-dev --no-scripts --ignore-platform-reqs
+
 RUN rm -f bootstrap/cache/services.php
 RUN rm -f bootstrap/cache/packages.php
 
