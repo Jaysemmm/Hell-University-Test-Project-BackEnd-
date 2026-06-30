@@ -1,0 +1,49 @@
+type Query {
+    schedules: [Schedule!]! @all
+    schedule(id: ID! @eq): Schedule @find
+}
+
+type Mutation {
+    createSchedule(
+        day: String!
+        start_time: String!
+        end_time: String!
+        room: String!
+        instructor: String!
+    ): Schedule! @create(model: "App\\Models\\Schedule")
+
+    updateSchedule(
+        id: ID!
+        day: String
+        start_time: String
+        end_time: String
+        room: String
+        instructor: String
+    ): Schedule @update(model: "App\\Models\\Schedule")
+
+    deleteSchedule(id: ID! @eq): Schedule @delete(model: "App\\Models\\Schedule")
+
+    assignStudentToSchedule(
+        student_id: ID!
+        schedule_id: ID
+    ): Student @update(model: "App\\Models\\User")
+}
+
+type Schedule {
+    id: ID!
+    day: String!
+    start_time: String!
+    end_time: String!
+    room: String!
+    instructor: String!
+    students: [Student!]! @hasMany
+    created_at: String
+    updated_at: String
+}
+
+type Student {
+    id: ID!
+    name: String!
+    email: String!
+    schedule: Schedule @belongsTo
+}

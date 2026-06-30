@@ -1,9 +1,13 @@
 <?php
 
 return [
-    'paths' => ['api/*'],
+    'paths' => ['api/*','graphql'],
     'allowed_methods' => ['*'],
-    'allowed_origins' => ['http://localhost:4200', 'http://127.0.0.1:4200'],
+    'allowed_origins' => [
+        'http://localhost:4200',
+        'http://127.0.0.1:4200',
+        'http://localhost:3000',
+        'http://localhost:5173' ],
     'allowed_origins_patterns' => [],
     'allowed_headers' => ['*'],
     'exposed_headers' => [],

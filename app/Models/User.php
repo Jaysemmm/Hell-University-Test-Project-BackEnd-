@@ -27,4 +27,8 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
         ];
     }
+    public function schedule()
+{
+    return $this->belongsTo(Schedule::class);
+}
 }
