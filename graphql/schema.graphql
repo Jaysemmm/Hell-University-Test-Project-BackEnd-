@@ -24,9 +24,10 @@ type Mutation {
     deleteSchedule(id: ID! @eq): Schedule @delete(model: "App\\Models\\Schedule")
 
     assignStudentToSchedule(
-        student_id: ID!
-        schedule_id: ID
-    ): Student @update(model: "App\\Models\\User")
+    id: ID!
+    schedule_id: ID
+    ): Student! @update(model: "App\\Models\\User")
+
 }
 
 type Schedule {
@@ -41,9 +42,10 @@ type Schedule {
     updated_at: String
 }
 
-type Student {
+type Student @model(class: "App\\Models\\User") {
     id: ID!
     name: String!
     email: String!
     schedule: Schedule @belongsTo
 }
+
